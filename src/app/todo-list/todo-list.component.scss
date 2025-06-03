@@ -8,3 +8,11 @@
     margin-top: 0.5rem;
   }
 }
+
+button {
+  @apply transition-colors;
+}
+
+button:hover {
+  @apply opacity-80;
+}
