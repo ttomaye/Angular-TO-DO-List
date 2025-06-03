@@ -32,6 +32,7 @@
             "styles": [
               "src/styles.scss"
             ],
+            "tailwindConfig": "tailwind.config.js",
             "scripts": []
           },
           "configurations": {
@@ -95,6 +96,7 @@
             "styles": [
               "src/styles.scss"
             ],
+            "tailwindConfig": "tailwind.config.js",
             "scripts": []
           }
         }
