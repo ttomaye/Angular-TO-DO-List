@@ -5,8 +5,8 @@
     <button type="submit" class="p-2 bg-blue-500 text-white rounded-r">Add</button>
   </form>
   <ul>
-    <li *ngFor="let todo of todos; let i = index" class="flex items-center mb-2">
-      <label class="flex items-center cursor-pointer">
+    <li *ngFor="let todo of filteredTodos; let i = index" class="flex items-center mb-2">
+      <label class="flex items-center cursor-pointer" *ngIf="editIndex !== i">
         <input type="checkbox" [checked]="todo.completed" (change)="toggleTodo(i)"
           class="sr-only" [attr.aria-checked]="todo.completed" role="checkbox">
         <span class="w-5 h-5 border rounded flex-shrink-0 flex items-center justify-center mr-2"
@@ -17,7 +17,22 @@
         </span>
         <span [class.line-through]="todo.completed">{{ todo.text }}</span>
       </label>
+      <input *ngIf="editIndex === i" [(ngModel)]="editText" (keyup.enter)="saveEdit(i)" (keyup.escape)="cancelEdit()"
+             class="flex-grow p-1 border rounded" [name]="'edit'+i">
+      <button *ngIf="editIndex !== i" class="ml-2 text-blue-500" (click)="editTodo(i)">Edit</button>
+      <button *ngIf="editIndex === i" class="ml-2 text-green-500" (click)="saveEdit(i)">Save</button>
+      <button *ngIf="editIndex === i" class="ml-2 text-gray-500" (click)="cancelEdit()">Cancel</button>
       <button aria-label="Delete todo" class="ml-auto text-red-500" (click)="deleteTodo(i)">✕</button>
     </li>
   </ul>
+
+  <div class="flex justify-between items-center mt-4 text-sm">
+    <span>{{ remaining() }} items left</span>
+    <div class="space-x-2">
+      <button (click)="setFilter('all')" [class.font-bold]="filter==='all'">All</button>
+      <button (click)="setFilter('active')" [class.font-bold]="filter==='active'">Active</button>
+      <button (click)="setFilter('completed')" [class.font-bold]="filter==='completed'">Completed</button>
+    </div>
+    <button class="text-red-500" (click)="clearCompleted()">Clear Completed</button>
+  </div>
 </div>

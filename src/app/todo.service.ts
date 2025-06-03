@@ -27,6 +27,11 @@ export class TodoService {
     this.save();
   }
 
+  updateTodo(index: number, text: string): void {
+    this.todos[index].text = text;
+    this.save();
+  }
+
   toggle(index: number): void {
     this.todos[index].completed = !this.todos[index].completed;
     this.save();
@@ -34,6 +39,11 @@ export class TodoService {
 
   delete(index: number): void {
     this.todos.splice(index, 1);
+    this.save();
+  }
+
+  clearCompleted(): void {
+    this.todos = this.todos.filter(t => !t.completed);
     this.save();
   }
 
