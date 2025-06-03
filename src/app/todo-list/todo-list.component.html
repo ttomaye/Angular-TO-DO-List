@@ -1,0 +1,23 @@
+<div class="max-w-md mx-auto p-4">
+  <h1 class="text-2xl mb-4 text-center">Todos</h1>
+  <form (ngSubmit)="addTodo()" class="flex mb-4">
+    <input class="flex-grow p-2 border rounded-l" [(ngModel)]="newTodo" name="todo" placeholder="Add todo">
+    <button type="submit" class="p-2 bg-blue-500 text-white rounded-r">Add</button>
+  </form>
+  <ul>
+    <li *ngFor="let todo of todos; let i = index" class="flex items-center mb-2">
+      <label class="flex items-center cursor-pointer">
+        <input type="checkbox" [checked]="todo.completed" (change)="toggleTodo(i)"
+          class="sr-only" [attr.aria-checked]="todo.completed" role="checkbox">
+        <span class="w-5 h-5 border rounded flex-shrink-0 flex items-center justify-center mr-2"
+              [ngClass]="{'bg-blue-500': todo.completed}">
+          <svg *ngIf="todo.completed" class="w-4 h-4 text-white" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+          </svg>
+        </span>
+        <span [class.line-through]="todo.completed">{{ todo.text }}</span>
+      </label>
+      <button aria-label="Delete todo" class="ml-auto text-red-500" (click)="deleteTodo(i)">✕</button>
+    </li>
+  </ul>
+</div>
