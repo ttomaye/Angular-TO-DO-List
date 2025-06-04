@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 body {
-  @apply bg-gradient-to-br from-blue-50 to-purple-100 text-gray-800 font-sans min-h-screen m-0;
+  @apply bg-gradient-to-br from-blue-50 via-purple-100 to-pink-50 text-gray-800 font-sans m-0 min-h-screen flex items-center justify-center;
 }
