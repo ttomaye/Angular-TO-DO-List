@@ -16,3 +16,15 @@ button {
 button:hover {
   @apply opacity-80;
 }
+
+ul {
+  @apply divide-y divide-gray-200;
+}
+
+li {
+  @apply transition-colors;
+}
+
+.line-through {
+  @apply text-gray-500;
+}
